@@ -52,7 +52,7 @@
             padding: 20px;
             border-radius: 10px;
             overflow: hidden;
-            width: 300px; /* set a fixed width for the box */
+            width: 300px; /* fixed width for the box */
             background: rgba(128, 128, 128, 0.7); /* grey background */
             animation: backgroundAnimation 2s ease-in-out infinite alternate; /* background animation */
         }
@@ -108,8 +108,8 @@
 
         .games-container {
             display: none; /* Initially hidden */
-            flex-direction: column;
-            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping of game items */
+            justify-content: center; /* Center items */
             padding: 20px;
             width: 100%;
             position: relative;
@@ -123,6 +123,7 @@
             margin: 10px;
             cursor: pointer;
             transition: transform 0.3s;
+            width: 150px; /* Fixed width for game item */
         }
 
         .game-item:hover {
@@ -130,8 +131,8 @@
         }
 
         .game-image {
-            width: 150px;
-            height: 150px;
+            width: 100%; /* Use full width of the game item */
+            height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
             margin-bottom: 10px;
         }
@@ -219,6 +220,18 @@
         <div class="game-item">
             <img src="https://via.placeholder.com/150" alt="Game Three" class="game-image" data-url="https://example.com/game-three">
             <a href="#" class="game-link">Game Three</a>
+        </div>
+        <div class="game-item">
+            <img src="https://via.placeholder.com/150" alt="Game Four" class="game-image" data-url="https://example.com/game-four">
+            <a href="#" class="game-link">Game Four</a>
+        </div>
+        <div class="game-item">
+            <img src="https://via.placeholder.com/150" alt="Game Five" class="game-image" data-url="https://example.com/game-five">
+            <a href="#" class="game-link">Game Five</a>
+        </div>
+        <div class="game-item">
+            <img src="https://via.placeholder.com/150" alt="Game Six" class="game-image" data-url="https://example.com/game-six">
+            <a href="#" class="game-link">Game Six</a>
         </div>
     </div>
 
