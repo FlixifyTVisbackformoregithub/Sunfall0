@@ -50,27 +50,34 @@
             position: relative;
             padding: 20px;
             border-radius: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
             overflow: hidden;
+            width: 300px; /* set a fixed width for the box */
+            background: rgba(128, 128, 128, 0.7); /* grey background */
+            animation: backgroundAnimation 2s ease-in-out infinite alternate; /* background animation */
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background: rgba(50, 50, 50, 0.7); } /* dark grey */
+            100% { background: rgba(0, 0, 0, 0.7); } /* black */
         }
 
         .border-animation {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(0deg, red, yellow, green, cyan, blue, magenta, red);
-            border-radius: 10px;
+            top: -5px;  /* border offset */
+            left: -5px; /* border offset */
+            right: -5px; /* border offset */
+            bottom: -5px; /* border offset */
+            border: 5px solid rgba(255, 255, 255, 0.7); /* white border with 70% transparency */
+            border-radius: 15px; /* increase the border-radius slightly */
             animation: borderAnimation 4s linear infinite;
             z-index: 0;
             filter: blur(8px);
+            pointer-events: none; /* Allow interaction with the content */
         }
 
         @keyframes borderAnimation {
             0% { transform: scale(1) }
-            50% { transform: scale(1.05) }
+            50% { transform: scale(1.02) }
             100% { transform: scale(1) }
         }
 
@@ -79,7 +86,7 @@
             z-index: 1;
             padding: 20px;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: transparent; /* Remove background to show animated background */
             border-radius: 10px;
         }
 
@@ -122,7 +129,13 @@
         });
 
         document.getElementById('downloadBtn').addEventListener('click', function() {
-            downloadFiles();
+            const link = document.createElement('a');
+            link.href = window.location.href;
+            link.download = 'sunfall_webpage.html'; // Change file name as needed
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            alert('This webpage is now downloading as "sunfall_webpage.html".');
         });
 
         function downloadFiles() {
