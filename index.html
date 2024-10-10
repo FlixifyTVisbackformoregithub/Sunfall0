@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Zone</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header {
+            padding: 20px;
+            text-align: center;
+        }
+
+        #downloadBtn {
+            background-color: #ff5252;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        #downloadBtn:hover {
+            background-color: #ff1744;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+        }
+
+        .animated-border {
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .content-box {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        #playBtn {
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        #playBtn:hover {
+            background-color: #3700b3;
+        }
+
+        .games-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .game-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .game-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .game-image:hover {
+            transform: scale(1.1);
+        }
+
+        .game-link {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            transition: opacity 0.3s;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #333;
+            border-radius: 10px;
+            padding: 0;
+            width: 80%;
+            max-width: 800px;
+            height: 80%;
+            overflow: hidden;
+        }
+
+        #game-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close {
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: red;
+            padding: 5px;
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button id="downloadBtn">Download Webpage</button>
+    </div>
+    
+    <div class="container">
+        <div class="animated-border">
+            <div class="content-box">
+                <h1>Welcome to Sunfall!</h1>
+                <p>The main place to play games during class!!!</p>
+                <button id="playBtn">Play Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="games-container" class="games-container">
+        <h2>Games</h2>
+        <div id="game-list">
+            <div class="game-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkbwrfBTNCFOtA8eGuTu92wz3zczJGGiiPqbR9lyoCkZAZko77:https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/e/2/e/e2ebf68d32f670e06a00f3e6a3c7914d52046385.jpeg&s" alt="Roblox-finding-unlocked-link" class="game-image">
+                <a href="#" class="game-link" data-url="https://roblox.com">Roblox - Blocked (FINDING UNBLOCKED LINK!)</a>
+            </div>
+            <div class="game-item">
+                <img src="https://via.placeholder.com/150" alt="Game Two" class="game-image">
+                <a href="#" class="game-link" data-url="https://example.com/game-two">Game Two</a>
+            </div>
+            <div class="game-item">
+                <img src="https://via.placeholder.com/150" alt="Game Three" class="game-image">
+                <a href="#" class="game-link" data-url="https://example.com/game-three">Game Three</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Game Details with Iframe -->
+    <div id="game-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <iframe id="game-frame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('playBtn').addEventListener('click', function() {
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('games-container').style.display = 'flex';
+        });
+
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            downloadFiles();
+        });
+
+        document.getElementById('close-modal').addEventListener('click', function() {
+            closeModal();
+        });
+
+        Array.from(document.getElementsByClassName('game-link')).forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const gameUrl = event.target.dataset.url;
+                openModal(gameUrl);
+            });
+        });
+
+        function openModal(url) {
+            document.getElementById('game-frame').src = url;
+            document.getElementById('game-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('game-frame').src = ''; // Clear the iframe
+            document.getElementById('game-modal').classList.add('hidden');
+        }
+
+        function downloadFiles() {
+            alert('This function will be implemented to download webpage files. Welcome to Game Zone!');
+        }
+    </script>
+</body>
+</html>
