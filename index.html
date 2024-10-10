@@ -23,19 +23,13 @@
             animation: gradientAnimation 20s ease infinite;
             color: white;
             font-family: 'Roboto', sans-serif;
-            overflow: auto; /* Ensure body can scroll */
+            overflow: auto;
         }
 
         @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .header {
@@ -63,10 +57,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Center content vertically */
-            padding-top: 30px;
-            min-height: 100vh; /* Let it take full height but enable scrolling */
-            padding-bottom: 20px; /* Add some bottom padding */
+            justify-content: center; 
+            padding: 30px;
+            min-height: 100vh; 
         }
 
         .animated-border {
@@ -78,23 +71,14 @@
             max-width: 600px;
             background: rgba(128, 128, 128, 0.7);
             box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s, background-color 0.3s;
-            text-align: center;
             animation: bounceIn 1s;
+            text-align: center;
         }
 
         @keyframes bounceIn {
-            0% {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            60% {
-                transform: translateY(10px);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(0);
-            }
+            0% { transform: translateY(-50px); opacity: 0; }
+            60% { transform: translateY(10px); opacity: 1; }
+            100% { transform: translateY(0); }
         }
 
         h1 {
@@ -134,34 +118,28 @@
         .section-divider {
             width: 100%;
             height: 5px;
-            background: #ffeb3b; /* Bright yellow to stand out */
+            background: #ffeb3b;
             margin: 20px 0;
         }
 
-        .games-container {
+        #games-container {
             display: none; 
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            width: 100%;
-            position: relative;
             z-index: 1;
             opacity: 0; 
             animation: fadeIn 0.5s forwards; 
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         h2 {
             margin-bottom: 20px;
-            font-size: 3em; /* Increased title size */
+            font-size: 3em; 
             color: #ffeb3b;
             text-align: center;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -189,7 +167,7 @@
         }
 
         .game-item:hover {
-            transform: translateY(-5px) rotate(-2deg); /* Add a slight tilt */
+            transform: translateY(-5px) rotate(-2deg);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
         }
 
@@ -217,7 +195,6 @@
             color: #ffd740; 
         }
 
-        /* Modal styles */
         .modal {
             display: none;
             justify-content: center;
@@ -228,15 +205,13 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
             background-color: rgba(0, 0, 0, 0.8);
-            transition: opacity 0.3s;
             backdrop-filter: blur(5px);
         }
 
         .modal-content {
             position: relative;
-            background-color: #333;
+            background-color: #444;
             border-radius: 10px;
             padding: 0;
             width: 80%;
@@ -271,23 +246,11 @@
             transform: scale(1.1);
         }
 
-        /* Responsive adjustments */
         @media screen and (max-width: 600px) {
-            h1 {
-                font-size: 2.5em;
-            }
-
-            h2 {
-                font-size: 2.5em; /* Increased title size */
-            }
-
-            #playBtn {
-                padding: 10px 20px; /* Adjusted button size */
-            }
-
-            .game-item {
-                flex: 1 1 100%; /* Full width for small screens */
-            }
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2.5em; }
+            #playBtn { padding: 10px 20px; }
+            .game-item { flex: 1 1 100%; }
         }
     </style>
 </head>
@@ -348,7 +311,7 @@
     </div>
 
     <script>
-        const soundEffect = new Audio('https://example.com/sound-effect.mp3'); // Add your sound effect URL
+        const soundEffect = new Audio('https://example.com/sound-effect.mp3');
 
         document.getElementById('playBtn').addEventListener('click', function () {
             document.querySelector('.container').style.display = 'none';
@@ -380,12 +343,12 @@
 
         function openModal(url) {
             document.getElementById('game-frame').src = url;
-            document.getElementById('game-modal').style.display = 'flex'; // Show modal
+            document.getElementById('game-modal').style.display = 'flex';
         }
 
         function closeModal() {
-            document.getElementById('game-frame').src = ''; // Clear the iframe
-            document.getElementById('game-modal').style.display = 'none'; // Hide modal
+            document.getElementById('game-frame').src = '';
+            document.getElementById('game-modal').style.display = 'none';
         }
     </script>
 </body>
