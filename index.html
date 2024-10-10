@@ -53,17 +53,24 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            padding-top: 50px; /* Increased padding from the top */
         }
 
         .animated-border {
             position: relative;
-            padding: 20px;
+            padding: 40px; /* Increased padding for more spacing inside the box */
             border-radius: 10px;
             overflow: hidden;
-            width: 80%; /* Adjusted width for better sizing */
-            max-width: 600px; /* Set maximum width */
+            width: 90%; /* Wider container */
+            max-width: 600px; /* Consistent max-width */
             background: rgba(128, 128, 128, 0.7);
             animation: backgroundAnimation 2s ease-in-out infinite alternate;
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5); /* Adding a shadow for depth */
+            transition: transform 0.3s; /* Animation for hover effect */
+        }
+
+        .animated-border:hover {
+            transform: scale(1.02); /* Slight zoom effect on hover */
         }
 
         @keyframes backgroundAnimation {
@@ -78,14 +85,18 @@
 
         h1 {
             margin: 0;
-            font-size: 2.5em;
-            color: #ffeb3b; /* Bright color for emphasis */
+            font-size: 3em; /* Increased font size for prominence */
+            color: #ffeb3b;
+            letter-spacing: 2px; /* Added letter spacing for style */
         }
 
         .description {
             margin: 10px 0 20px;
             font-size: 1.2em;
             color: white;
+            max-width: 500px; /* Limiting width for better layout */
+            margin-left: auto;
+            margin-right: auto; /* Centering description */
         }
 
         #playBtn {
@@ -97,6 +108,7 @@
             cursor: pointer;
             font-size: 16px;
             transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Added shadow for depth */
         }
 
         #playBtn:hover {
@@ -116,7 +128,7 @@
 
         h2 {
             margin-bottom: 20px;
-            font-size: 2em;
+            font-size: 2.5em; /* Increased title size */
             color: #ffeb3b;
             text-align: center;
         }
@@ -126,6 +138,7 @@
             flex-wrap: wrap; /* Allow wrapping */
             justify-content: center; /* Center items */
             gap: 20px; /* Space between items */
+            padding: 20px; /* Padding around game items */
         }
 
         .game-item {
@@ -221,6 +234,14 @@
                 width: 90%; /* Full width buttons on small screens */
                 margin: 10px 0; /* Spacing */
             }
+
+            h1 {
+                font-size: 2.5em; /* Smaller header on mobile */
+            }
+
+            h2 {
+                font-size: 2em; /* Smaller sub-header on mobile */
+            }
         }
 
     </style>
@@ -299,7 +320,7 @@
         });
 
         Array.from(document.querySelectorAll('.game-item')).forEach(item => {
-            item.addEventListener('click', function(event) {
+            item.addEventListener('click', function() {
                 const gameUrl = item.querySelector('.game-image').dataset.url || item.querySelector('.game-link').dataset.url;
                 openModal(gameUrl);
             });
