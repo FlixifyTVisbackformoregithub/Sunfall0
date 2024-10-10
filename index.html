@@ -40,12 +40,13 @@
         #downloadBtn {
             background-color: #ff5252;
             border: none;
-            padding: 15px 30px;
+            padding: 10px 20px;
             cursor: pointer;
             color: white;
             border-radius: 5px;
             font-weight: bold;
             transition: background 0.3s, transform 0.2s;
+            font-size: 16px;
         }
 
         #downloadBtn:hover {
@@ -70,7 +71,7 @@
             width: 90%;
             max-width: 600px;
             background: rgba(128, 128, 128, 0.7);
-            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
             animation: bounceIn 1s;
             text-align: center;
         }
@@ -101,18 +102,20 @@
             background-color: #6200ea;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 25px;
             border-radius: 25px;
             cursor: pointer;
             font-size: 16px;
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 10px;
+            width: 100%; /* Full width to match the container */
         }
 
         #playBtn:hover {
             background-color: #3700b3;
-            transform: scale(1.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .section-divider {
@@ -142,33 +145,32 @@
             font-size: 3em; 
             color: #ffeb3b;
             text-align: center;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .game-items-wrapper {
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Increased minimum size for each game item */
             gap: 20px; 
-            padding: 20px; 
+            padding: 20px;
             width: 100%; 
         }
 
         .game-item {
-            background: rgba(50, 50, 50, 0.8);
+            background: rgba(50, 50, 50, 0.9);
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 10px;
+            padding: 15px; /* Increased padding for game items */
         }
 
         .game-item:hover {
-            transform: translateY(-5px) rotate(-2deg);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
         }
 
         .game-image {
@@ -177,10 +179,11 @@
             border-radius: 10px;
             margin-bottom: 10px;
             transition: transform 0.3s;
+            max-height: 150px; /* Set max height to ensure uniformity */
         }
 
         .game-item:hover .game-image {
-            transform: scale(1.05); 
+            transform: scale(1.1); 
         }
 
         .game-link {
@@ -247,10 +250,13 @@
         }
 
         @media screen and (max-width: 600px) {
-            h1 { font-size: 2.5em; }
-            h2 { font-size: 2.5em; }
-            #playBtn { padding: 10px 20px; }
-            .game-item { flex: 1 1 100%; }
+            h1, h2 {
+                font-size: 2.5em;
+            }
+            #playBtn { padding: 10px; }
+            .game-item {
+                flex: 1 1 100%; /* Full width for small screens */
+            }
         }
     </style>
 </head>
@@ -264,7 +270,7 @@
         <div class="animated-border">
             <div class="content-box">
                 <h1>Welcome to Sunfall!</h1>
-                <p class="description">Unblocked Games - Play games during class!!!</p>
+                <p class="description">Unblocked Games - Play games during class!</p>
                 <button id="playBtn">Play Now</button>
             </div>
         </div>
@@ -276,27 +282,27 @@
         <h2>Available Games</h2>
         <div class="game-items-wrapper">
             <div class="game-item">
-                <img src="https://via.placeholder.com/150" alt="Game One" class="game-image" data-url="https://example.com/game-one">
+                <img src="https://via.placeholder.com/200" alt="Game One" class="game-image" data-url="https://example.com/game-one">
                 <a href="#" class="game-link">Game One</a>
             </div>
             <div class="game-item">
-                <img src="https://via.placeholder.com/150" alt="Game Two" class="game-image" data-url="https://example.com/game-two">
+                <img src="https://via.placeholder.com/200" alt="Game Two" class="game-image" data-url="https://example.com/game-two">
                 <a href="#" class="game-link">Game Two</a>
             </div>
             <div class="game-item">
-                <img src="https://via.placeholder.com/150" alt="Game Three" class="game-image" data-url="https://example.com/game-three">
+                <img src="https://via.placeholder.com/200" alt="Game Three" class="game-image" data-url="https://example.com/game-three">
                 <a href="#" class="game-link">Game Three</a>
             </div>
             <div class="game-item">
-                <img src="https://via.placeholder.com/150" alt="Game Four" class="game-image" data-url="https://example.com/game-four">
+                <img src="https://via.placeholder.com/200" alt="Game Four" class="game-image" data-url="https://example.com/game-four">
                 <a href="#" class="game-link">Game Four</a>
             </div>
             <div class="game-item">
-                <img src="https://via.placeholder.com/150" alt="Game Five" class="game-image" data-url="https://example.com/game-five">
+                <img src="https://via.placeholder.com/200" alt="Game Five" class="game-image" data-url="https://example.com/game-five">
                 <a href="#" class="game-link">Game Five</a>
             </div>
             <div class="game-item">
-                <img src="https://via.placeholder.com/150" alt="Game Six" class="game-image" data-url="https://example.com/game-six">
+                <img src="https://via.placeholder.com/200" alt="Game Six" class="game-image" data-url="https://example.com/game-six">
                 <a href="#" class="game-link">Game Six</a>
             </div>
         </div>
@@ -352,5 +358,4 @@
         }
     </script>
 </body>
-
 </html>
