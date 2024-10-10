@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunfall</title>
-    <meta name="description" content="Unblocked Games">
+    <title>Sunfall - Unblocked Games</title>
+    <meta name="description" content="Play unblocked games safely in school!">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -13,17 +13,20 @@
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            padding: 0;
             background: linear-gradient(135deg, #1a1a1a, #4e4e4e);
             background-size: 400% 400%;
             animation: gradientAnimation 20s ease infinite;
             color: white;
             font-family: 'Roboto', sans-serif;
-            overflow: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         @keyframes gradientAnimation {
@@ -35,23 +38,29 @@
         .header {
             padding: 20px;
             text-align: center;
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10;
         }
 
         #downloadBtn {
             background-color: #ff5252;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             cursor: pointer;
             color: white;
             border-radius: 5px;
             font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
-            font-size: 16px;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            font-size: 18px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         #downloadBtn:hover {
             background-color: #ff1744;
             transform: translateY(-2px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
         }
 
         .container {
@@ -60,7 +69,7 @@
             align-items: center;
             justify-content: center; 
             padding: 30px;
-            min-height: 100vh; 
+            flex-grow: 1; 
         }
 
         .animated-border {
@@ -70,8 +79,8 @@
             overflow: hidden;
             width: 90%;
             max-width: 600px;
-            background: rgba(128, 128, 128, 0.7);
-            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(128, 128, 128, 0.8);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5);
             animation: bounceIn 1s;
             text-align: center;
         }
@@ -109,7 +118,7 @@
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             margin-top: 10px;
-            width: 100%; /* Full width to match the container */
+            width: 100%; 
         }
 
         #playBtn:hover {
@@ -150,22 +159,24 @@
 
         .game-items-wrapper {
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Increased minimum size for each game item */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px; 
             padding: 20px;
-            width: 100%; 
+            width: 90%; 
+            margin: auto;
         }
 
         .game-item {
             background: rgba(50, 50, 50, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px; /* Increased padding for game items */
+            padding: 15px; 
+            position: relative; /* For the overlay effect */
         }
 
         .game-item:hover {
@@ -179,7 +190,7 @@
             border-radius: 10px;
             margin-bottom: 10px;
             transition: transform 0.3s;
-            max-height: 150px; /* Set max height to ensure uniformity */
+            max-height: 150px; 
         }
 
         .game-item:hover .game-image {
@@ -249,13 +260,34 @@
             transform: scale(1.1);
         }
 
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #ffeb3b;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #ffd740;
+        }
+
         @media screen and (max-width: 600px) {
             h1, h2 {
                 font-size: 2.5em;
             }
-            #playBtn { padding: 10px; }
+            #downloadBtn,
+            #playBtn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
             .game-item {
-                flex: 1 1 100%; /* Full width for small screens */
+                flex: 1 1 100%;
             }
         }
     </style>
@@ -268,11 +300,9 @@
 
     <div class="container">
         <div class="animated-border">
-            <div class="content-box">
-                <h1>Welcome to Sunfall!</h1>
-                <p class="description">Unblocked Games - Play games during class!</p>
-                <button id="playBtn">Play Now</button>
-            </div>
+            <h1>Welcome to Sunfall!</h1>
+            <p class="description">Unblocked Games - Play games during class!</p>
+            <button id="playBtn">Play Now</button>
         </div>
     </div>
 
@@ -316,6 +346,15 @@
         </div>
     </div>
 
+    <footer>
+        <p>&copy; 2023 Sunfall. All rights reserved.</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a> | 
+            <a href="mailto:Opal.EphTv.Networks@outlook.com">Contact Us</a>
+        </p>
+    </footer>
+
     <script>
         const soundEffect = new Audio('https://example.com/sound-effect.mp3');
 
@@ -327,12 +366,15 @@
         });
 
         document.getElementById('downloadBtn').addEventListener('click', function () {
+            const htmlContent = document.documentElement.outerHTML; // Get the entire HTML of the current document
+            const blob = new Blob([htmlContent], { type: 'text/html' }); // Create a blob with the HTML content
             const link = document.createElement('a');
-            link.href = window.location.href;
-            link.download = 'sunfall_webpage.html';
+            link.href = URL.createObjectURL(blob); // Create a link to the blob
+            link.download = 'sunfall_webpage.html'; // Set the download name
             document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            link.click(); // Programmatically click the link to trigger the download
+            document.body.removeChild(link); // Remove the link from the document
+            
             alert('This webpage is now downloading as "sunfall_webpage.html".');
         });
 
