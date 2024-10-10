@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +23,17 @@
         }
 
         @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .header {
@@ -51,43 +60,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* Changed to flex-start to position higher */
             height: 100vh;
-            padding-top: 50px; /* Increased padding from the top */
+            padding-top: 30px; /* Changed to bring box up */
         }
 
         .animated-border {
             position: relative;
-            padding: 40px; /* Increased padding for more spacing inside the box */
+            padding: 40px;
             border-radius: 10px;
             overflow: hidden;
-            width: 90%; /* Wider container */
-            max-width: 600px; /* Consistent max-width */
+            width: 90%;
+            max-width: 600px;
             background: rgba(128, 128, 128, 0.7);
-            animation: backgroundAnimation 2s ease-in-out infinite alternate;
-            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5); /* Adding a shadow for depth */
-            transition: transform 0.3s; /* Animation for hover effect */
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5); /* Added shadow for depth */
+            transition: transform 0.3s;
+            text-align: center; /* Center align for text */
         }
 
         .animated-border:hover {
-            transform: scale(1.02); /* Slight zoom effect on hover */
-        }
-
-        @keyframes backgroundAnimation {
-            0% { background: rgba(50, 50, 50, 0.7); }
-            100% { background: rgba(0, 0, 0, 0.7); }
-        }
-
-        .content-box {
-            z-index: 1;
-            text-align: center;
+            transform: scale(1.05); /* Slightly increase size on hover */
         }
 
         h1 {
             margin: 0;
-            font-size: 3em; /* Increased font size for prominence */
+            font-size: 3.5em; /* Increased font size for prominence */
             color: #ffeb3b;
-            letter-spacing: 2px; /* Added letter spacing for style */
+            letter-spacing: 2px; /* Added letter spacing */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Added text shadow */
         }
 
         .description {
@@ -97,6 +97,7 @@
             max-width: 500px; /* Limiting width for better layout */
             margin-left: auto;
             margin-right: auto; /* Centering description */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow for description */
         }
 
         #playBtn {
@@ -107,23 +108,36 @@
             border-radius: 25px;
             cursor: pointer;
             font-size: 16px;
-            transition: background 0.3s, transform 0.3s;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s; /* Added transition for shadow */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Added shadow for depth */
         }
 
         #playBtn:hover {
             background-color: #3700b3;
-            transform: scale(1.05); /* Slight zoom effect on hover */
+            transform: scale(1.1); /* Slight zoom effect on hover */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Increased shadow on hover */
         }
 
         .games-container {
             display: none; /* Initially hidden */
             flex-direction: column; /* Column for header + items */
-            align-items: center; 
+            align-items: center;
             padding: 20px;
             width: 100%;
             position: relative;
             z-index: 1;
+            opacity: 0; /* Initially hidden */
+            animation: fadeIn 0.5s forwards; /* Animation for fade-in */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         h2 {
@@ -131,10 +145,11 @@
             font-size: 2.5em; /* Increased title size */
             color: #ffeb3b;
             text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .game-items-wrapper {
-            display: flex; /* Flex for game items */
+            display: flex;
             flex-wrap: wrap; /* Allow wrapping */
             justify-content: center; /* Center items */
             gap: 20px; /* Space between items */
@@ -145,10 +160,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 10px;
             cursor: pointer;
-            transition: transform 0.3s;
-            width: 150px; 
+            transition: transform 0.3s, box-shadow 0.3s; /* Transition for scale and shadow */
+            width: 150px;
             background: rgba(50, 50, 50, 0.8);
             border-radius: 10px;
             padding: 10px;
@@ -157,13 +171,13 @@
         }
 
         .game-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Increased shadow */
         }
 
         .game-image {
-            width: 100%; 
-            height: auto; 
+            width: 100%;
+            height: auto;
             border-radius: 10px;
             margin-bottom: 10px;
         }
@@ -173,11 +187,16 @@
             text-decoration: none;
             font-size: 18px;
             font-weight: bold; /* Added bold text */
+            transition: color 0.3s; /* Transition for color change */
+        }
+
+        .game-link:hover {
+            color: #ffd740; /* Change color on hover */
         }
 
         /* Modal styles */
         .modal {
-            display: none; 
+            display: none;
             justify-content: center;
             align-items: center;
             position: fixed;
@@ -230,7 +249,8 @@
                 max-width: 150px; /* Constrain maximum size */
             }
 
-            #downloadBtn, #playBtn {
+            #downloadBtn,
+            #playBtn {
                 width: 90%; /* Full width buttons on small screens */
                 margin: 10px 0; /* Spacing */
             }
@@ -243,14 +263,14 @@
                 font-size: 2em; /* Smaller sub-header on mobile */
             }
         }
-
     </style>
 </head>
+
 <body>
     <div class="header">
         <button id="downloadBtn">Download Webpage</button>
     </div>
-    
+
     <div class="container">
         <div class="animated-border">
             <div class="content-box">
@@ -300,12 +320,13 @@
     </div>
 
     <script>
-        document.getElementById('playBtn').addEventListener('click', function() {
+        document.getElementById('playBtn').addEventListener('click', function () {
             document.querySelector('.container').style.display = 'none';
             document.getElementById('games-container').style.display = 'flex';
+            document.getElementById('games-container').style.opacity = '1'; // Ensure opacity is set to 1
         });
 
-        document.getElementById('downloadBtn').addEventListener('click', function() {
+        document.getElementById('downloadBtn').addEventListener('click', function () {
             const link = document.createElement('a');
             link.href = window.location.href;
             link.download = 'sunfall_webpage.html';
@@ -315,12 +336,12 @@
             alert('This webpage is now downloading as "sunfall_webpage.html".');
         });
 
-        document.getElementById('close-modal').addEventListener('click', function() {
+        document.getElementById('close-modal').addEventListener('click', function () {
             closeModal();
         });
 
         Array.from(document.querySelectorAll('.game-item')).forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function () {
                 const gameUrl = item.querySelector('.game-image').dataset.url || item.querySelector('.game-link').dataset.url;
                 openModal(gameUrl);
             });
@@ -337,4 +358,5 @@
         }
     </script>
 </body>
+
 </html>
