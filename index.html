@@ -60,43 +60,32 @@
             padding: 20px;
             border-radius: 10px;
             overflow: hidden;
-            width: 300px; /* fixed width for the box */
-            background: rgba(128, 128, 128, 0.7); /* grey background */
-            animation: backgroundAnimation 2s ease-in-out infinite alternate; /* background animation */
+            width: 80%; /* Adjusted width for better sizing */
+            max-width: 600px; /* Set maximum width */
+            background: rgba(128, 128, 128, 0.7);
+            animation: backgroundAnimation 2s ease-in-out infinite alternate;
         }
 
         @keyframes backgroundAnimation {
-            0% { background: rgba(50, 50, 50, 0.7); } /* dark grey */
-            100% { background: rgba(0, 0, 0, 0.7); } /* black */
-        }
-
-        .border-animation {
-            position: absolute;
-            top: -5px;  /* border offset */
-            left: -5px; /* border offset */
-            right: -5px; /* border offset */
-            bottom: -5px; /* border offset */
-            border: 5px solid rgba(255, 255, 255, 0.7); /* white border with 70% transparency */
-            border-radius: 15px; /* increase the border-radius slightly */
-            animation: borderAnimation 4s linear infinite;
-            z-index: 0;
-            filter: blur(8px);
-            pointer-events: none; /* Allow interaction with the content */
-        }
-
-        @keyframes borderAnimation {
-            0% { transform: scale(1) }
-            50% { transform: scale(1.02) }
-            100% { transform: scale(1) }
+            0% { background: rgba(50, 50, 50, 0.7); }
+            100% { background: rgba(0, 0, 0, 0.7); }
         }
 
         .content-box {
-            position: relative;
             z-index: 1;
-            padding: 20px;
             text-align: center;
-            background-color: transparent; /* Remove background to show animated background */
-            border-radius: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #ffeb3b; /* Bright color for emphasis */
+        }
+
+        .description {
+            margin: 10px 0 20px;
+            font-size: 1.2em;
+            color: white;
         }
 
         #playBtn {
@@ -107,21 +96,36 @@
             border-radius: 25px;
             cursor: pointer;
             font-size: 16px;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
 
         #playBtn:hover {
             background-color: #3700b3;
+            transform: scale(1.05); /* Slight zoom effect on hover */
         }
 
         .games-container {
             display: none; /* Initially hidden */
-            flex-direction: column; /* Change to column to position items vertically */
-            align-items: center; /* Center items horizontally */
+            flex-direction: column; /* Column for header + items */
+            align-items: center; 
             padding: 20px;
             width: 100%;
             position: relative;
             z-index: 1;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #ffeb3b;
+            text-align: center;
+        }
+
+        .game-items-wrapper {
+            display: flex; /* Flex for game items */
+            flex-wrap: wrap; /* Allow wrapping */
+            justify-content: center; /* Center items */
+            gap: 20px; /* Space between items */
         }
 
         .game-item {
@@ -131,11 +135,12 @@
             margin: 10px;
             cursor: pointer;
             transition: transform 0.3s;
-            width: 150px; /* Fixed width for game item */
+            width: 150px; 
             background: rgba(50, 50, 50, 0.8);
             border-radius: 10px;
             padding: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
 
         .game-item:hover {
@@ -144,8 +149,8 @@
         }
 
         .game-image {
-            width: 100%; /* Use full width of the game item */
-            height: auto; /* Maintain aspect ratio */
+            width: 100%; 
+            height: auto; 
             border-radius: 10px;
             margin-bottom: 10px;
         }
@@ -154,11 +159,12 @@
             color: #ffeb3b;
             text-decoration: none;
             font-size: 18px;
+            font-weight: bold; /* Added bold text */
         }
 
         /* Modal styles */
         .modal {
-            display: none; /* Hide modal by default */
+            display: none; 
             justify-content: center;
             align-items: center;
             position: fixed;
@@ -170,6 +176,7 @@
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.8);
             transition: opacity 0.3s;
+            backdrop-filter: blur(5px); /* Added blur effect */
         }
 
         .modal-content {
@@ -202,6 +209,20 @@
             border-radius: 10px;
             border: none;
         }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 600px) {
+            .game-item {
+                width: 100%; /* Full width for small screens */
+                max-width: 150px; /* Constrain maximum size */
+            }
+
+            #downloadBtn, #playBtn {
+                width: 90%; /* Full width buttons on small screens */
+                margin: 10px 0; /* Spacing */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -211,18 +232,17 @@
     
     <div class="container">
         <div class="animated-border">
-            <div class="border-animation"></div>
             <div class="content-box">
                 <h1>Welcome to Sunfall!</h1>
-                <p>Unblocked Games - Play games during class!!!</p>
+                <p class="description">Unblocked Games - Play games during class!!!</p>
                 <button id="playBtn">Play Now</button>
             </div>
         </div>
     </div>
 
     <div id="games-container" class="games-container">
-        <h2 style="text-align: center; margin-bottom: 20px;">Available Games</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <h2>Available Games</h2>
+        <div class="game-items-wrapper">
             <div class="game-item">
                 <img src="https://via.placeholder.com/150" alt="Game One" class="game-image" data-url="https://example.com/game-one">
                 <a href="#" class="game-link">Game One</a>
